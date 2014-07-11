@@ -30,14 +30,14 @@ $token = $c->Login("trasintest", $time,"trasin123");
  //发送短信  param1 token，
  //具体看里面的实现， 参数 还有很多，都写在实现里面了 不妥 ，请根据业务完善吧
  //若成功返回 trackid ，作为该条信息的 查询序号。
-// $c->smsSend($token, $msgId,'8613012345678', "BYYL02");
+// $c->smsSend($token, $msgId,'8613012345678', "BYYL02", $feeType, $feeValue, $agentFlag, $moFlag, $linkId);
 //  //
 // exit;
 // 发送彩信
 
 $path = '/Users/Peter/Downloads/';
 // $name = 'nginx.conf';
-$name = 'php-client.rar';
+$name = 'www.zip';
 //  创建彩信      parm1 token，param2 主题 ，param3 彩信的服务代码 返回 msgid
 $msgId = $c->MmsCreate($token,'subjecttxt','mmstest0');
 

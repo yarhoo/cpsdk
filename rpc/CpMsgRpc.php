@@ -57,19 +57,19 @@ class CpMsgRpc
     *   发送短信
     *   返回 trackid
     **/
-    public function SmsSend($identify, $contentID, $umobile, $service) {
+    public function SmsSend($identify, $contentID, $umobile, $service, $feeType, $feeValue, $agentFlag, $moFlag, $linkId) {
 //        $a = new SmsCreateRequest()
         $smsSendRequest = new SmsSendRequest();
         $smsSendRequest->set_contentid($contentID);
         $smsSendRequest->set_identify($identify);
-        $smsSendRequest->set_fee_type(1);
+        // $smsSendRequest->set_fee_type(1);
         $smsSendRequest->set_serivce($service);
         $smsSendRequest->set_usernumber($umobile);
-        $smsSendRequest->set_fee_type(0);
-        $smsSendRequest->set_fee_vlaue(0);
-        $smsSendRequest->set_agent_flag(1);
-        $smsSendRequest->set_mo_flag(1);
-        $smsSendRequest->set_link_id(123);
+        $smsSendRequest->set_fee_type($feeType);
+        $smsSendRequest->set_fee_vlaue($feeValue);
+        $smsSendRequest->set_agent_flag($agentFlag);
+        $smsSendRequest->set_mo_flag($moFlag);
+        $smsSendRequest->set_link_id($linkId);
         // request.setContentid(contentID);
         // request.setIdentify(identify);
         // request.setFeeType(1);

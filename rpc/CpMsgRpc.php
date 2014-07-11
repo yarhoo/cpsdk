@@ -221,7 +221,8 @@ class CpMsgRpc
         // 循环传入文件
         for($i = 0;$i<$len;$i++) {
             $r = $this->MmsApdBin(substr($content,$offset,$this->setplen),$identify,$attId,$msgId);
-            if($r != 0) {
+
+            if($r) {
                 return array('state'=>false,'attId'=>$attId);
                 // 如果传输失败则删除该信息
                 $this->MmsDelete($identify,$msgId,$attId);

@@ -35,9 +35,9 @@ $token = $c->Login("trasintest", $time,"trasin123");
 // exit;
 // 发送彩信
 
-$path = '/Users/Peter/Downloads/';
+$path = 'C:\Users\Peter\Documents\smsClient\\';
 // $name = 'nginx.conf';
-$name = 'www.zip';
+$name = 'index.php';
 //  创建彩信      parm1 token，param2 主题 ，param3 彩信的服务代码 返回 msgid
 $msgId = $c->MmsCreate($token,'subjecttxt','mmstest0');
 

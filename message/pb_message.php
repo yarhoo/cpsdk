@@ -233,10 +233,11 @@ abstract class PBMessage
             }
             else if ($this->values[$index] != null)
             {
-
                 // wired and type
                 $newstring = '';
-                $newstring .= $this->values[$index]->SerializeToString($index);
+                if(isset($this->values[$index]->wired_type)){
+                    $newstring .= $this->values[$index]->SerializeToString($index);
+                }
 
                 $stringinner .= $newstring;
             }

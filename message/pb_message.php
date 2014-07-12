@@ -353,7 +353,8 @@ abstract class PBMessage
                     $class = 'ErrorCode';
                 }
                 $this->values[$messtypes['field']] = new $class($this->reader);
-                if ($messtypes['wired'] != $this->values[$messtypes['field']]->wired_type)
+                // var_dump($messtypes['wired'],$this->values[$messtypes['field']]->wired_type);exit;
+                if ($messtypes['wired']!=$this->values[$messtypes['field']]->wired_type)
                 {
                     throw new Exception('Expected type:' . $messtypes['wired'] . ' but had ' . self::$fields[$thisClassName][$thisClassName][$messtypes['field']]->wired_type);
                 }

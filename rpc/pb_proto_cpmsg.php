@@ -1,5 +1,4 @@
 <?php
-
 require_once ( __DIR__.'/../message/pb_message.php');
 require_once ( __DIR__.'/../message/type/pb_enum.php');
 
@@ -17,17 +16,17 @@ class ErrorCode extends \PBEnum
 
   public function __construct($reader=null)
   {
-   	parent::__construct($reader);
- 	$this->names = array(
-			0 => "SUCCESS",
-			1 => "AUTH_ERR",
-			2 => "OUT_OF_FUND",
-			3 => "INVAILD_PARAMETER",
-			4 => "INVAILD_IDENTIFY",
-			5 => "EXCEED_SESSION_LIMIT",
-			6 => "TRY_LATER",
-			7 => "ERR_OCCURED",
-			8 => "EXCEED_MSG_CAPACITY");
+    parent::__construct($reader);
+  $this->names = array(
+      0 => "SUCCESS",
+      1 => "AUTH_ERR",
+      2 => "OUT_OF_FUND",
+      3 => "INVAILD_PARAMETER",
+      4 => "INVAILD_IDENTIFY",
+      5 => "EXCEED_SESSION_LIMIT",
+      6 => "TRY_LATER",
+      7 => "ERR_OCCURED",
+      8 => "EXCEED_MSG_CAPACITY");
    }
 }
 class OpType extends \PBEnum
@@ -37,10 +36,10 @@ class OpType extends \PBEnum
 
   public function __construct($reader=null)
   {
-   	parent::__construct($reader);
- 	$this->names = array(
-			1 => "SMS",
-			2 => "MMS");
+    parent::__construct($reader);
+  $this->names = array(
+      1 => "SMS",
+      2 => "MMS");
    }
 }
 class MMS_Endflag extends \PBEnum
@@ -51,11 +50,11 @@ class MMS_Endflag extends \PBEnum
 
   public function __construct($reader=null)
   {
-   	parent::__construct($reader);
- 	$this->names = array(
-			0 => "BEGIN",
-			1 => "RESUME",
-			2 => "END");
+    parent::__construct($reader);
+  $this->names = array(
+      0 => "BEGIN",
+      1 => "RESUME",
+      2 => "END");
    }
 }
 class NetType extends \PBEnum
@@ -66,11 +65,11 @@ class NetType extends \PBEnum
 
   public function __construct($reader=null)
   {
-   	parent::__construct($reader);
- 	$this->names = array(
-			1 => "cmcc",
-			2 => "ctcc",
-			3 => "cucc");
+    parent::__construct($reader);
+  $this->names = array(
+      1 => "cmcc",
+      2 => "ctcc",
+      3 => "cucc");
    }
 }
 class LoginRequest extends \PBMessage
@@ -148,6 +147,25 @@ class LoginResponse extends \PBMessage
     return $this->_set_value("2", $value);
   }
 }
+class LogoutRequest extends \PBMessage
+{
+  var $wired_type = \PBMessage::WIRED_LENGTH_DELIMITED;
+  public function __construct($reader=null)
+  {
+    parent::__construct($reader);
+    self::$fields["LogoutRequest"]["1"] = "\\PBInt";
+    $this->values["1"] = "";
+    self::$fieldNames["LogoutRequest"]["1"] = "identify";
+  }
+  function identify()
+  {
+    return $this->_get_value("1");
+  }
+  function set_identify($value)
+  {
+    return $this->_set_value("1", $value);
+  }
+}
 class LogoutResponse extends \PBMessage
 {
   var $wired_type = \PBMessage::WIRED_LENGTH_DELIMITED;
@@ -218,10 +236,10 @@ class SmsCreateResponse extends \PBMessage
   public function __construct($reader=null)
   {
     parent::__construct($reader);
-    self::$fields["SmsCreateResponse"]["1"] = "ErrorCode";
+    self::$fields["SmsCreateResponse"]["1"] = "\\cpmsg\\ErrorCode";
     $this->values["1"] = "";
     self::$fieldNames["SmsCreateResponse"]["1"] = "retcode";
-    self::$fields["SmsCreateResponse"]["2"] = "PBInt";
+    self::$fields["SmsCreateResponse"]["2"] = "\\PBString";
     $this->values["2"] = "";
     self::$fieldNames["SmsCreateResponse"]["2"] = "contentid";
   }
@@ -258,7 +276,7 @@ class SmsSendRequest extends \PBMessage
     self::$fields["SmsSendRequest"]["2"] = "\\PBString";
     $this->values["2"] = "";
     self::$fieldNames["SmsSendRequest"]["2"] = "usernumber";
-    self::$fields["SmsSendRequest"]["4"] = "\\PBInt";
+    self::$fields["SmsSendRequest"]["4"] = "\\PBString";
     $this->values["4"] = "";
     self::$fieldNames["SmsSendRequest"]["4"] = "contentid";
     self::$fields["SmsSendRequest"]["5"] = "\\PBInt";
@@ -980,6 +998,48 @@ class TrackingResponse extends \PBMessage
   function set_state($value)
   {
     return $this->_set_value("3", $value);
+  }
+}
+class ClcacheRequest extends \PBMessage
+{
+  var $wired_type = \PBMessage::WIRED_LENGTH_DELIMITED;
+  public function __construct($reader=null)
+  {
+    parent::__construct($reader);
+    self::$fields["ClcacheRequest"]["1"] = "\\PBInt";
+    $this->values["1"] = "";
+    self::$fieldNames["ClcacheRequest"]["1"] = "cropid";
+  }
+  function cropid()
+  {
+    return $this->_get_value("1");
+  }
+  function set_cropid($value)
+  {
+    return $this->_set_value("1", $value);
+  }
+}
+class ClcacheResponse extends \PBMessage
+{
+  var $wired_type = \PBMessage::WIRED_LENGTH_DELIMITED;
+  public function __construct($reader=null)
+  {
+    parent::__construct($reader);
+    self::$fields["ClcacheResponse"]["1"] = "\\cpmsg\\ErrorCode";
+    $this->values["1"] = "";
+    self::$fieldNames["ClcacheResponse"]["1"] = "retcode";
+  }
+  function retcode()
+  {
+    return $this->_get_value("1");
+  }
+  function set_retcode($value)
+  {
+    return $this->_set_value("1", $value);
+  }
+  function retcode_string()
+  {
+    return $this->values["1"]->get_description();
   }
 }
 ?>

@@ -1,27 +1,9 @@
 <?php
 /**
- * @author maxinjian
- * @copyright 2010-8-20 9:40
+ * @author wangjiayi
+ * @copyright 2014-07
  */
 
-// list(,$a) = unpack ( "N", "\xff\xff\xff\xff" );
-// list(,$b) = unpack ( "N", "\xff\xff\xff\xff" );
-// hash8("cpmsg.cpmsgSe
-// rvice.LogIn");exit;
-
-// $e = new CpMsgRpc();
-// $hi = '3923197251';
-// $lo = '2218998790';
-// list(,$a) = unpack ( "l", $hi );
-// list(,$b) = unpack ( "l", $lo );
-// var_dump($a,$b);
-// $q = $e->_Make64($a,$b);
-// var_dump($q);exit;
-
-// ini_set('precision',64);
-// echo PHP_INT_MAX;
-// $l = 9223372036854775807;
-// var_dump($l);
 
 
 class CpMsgRpc

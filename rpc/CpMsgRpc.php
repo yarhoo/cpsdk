@@ -1,7 +1,7 @@
 <?php
 /**
- * @author maxinjian
- * @copyright 2010-8-20 9:40
+ * @author wangjiayi
+ * @copyright 2014-07
  */
 
 // list(,$a) = unpack ( "N", "\xff\xff\xff\xff" );

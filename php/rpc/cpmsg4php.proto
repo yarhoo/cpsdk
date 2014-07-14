@@ -1,0 +1,168 @@
+
+package cpmsg;
+ enum ErrorCode {
+    SUCCESS			= 0;
+    AUTH_ERR			= 1;
+    OUT_OF_FUND			= 2;
+    INVAILD_PARAMETER		= 3;
+    INVAILD_IDENTIFY		= 4;
+    EXCEED_SESSION_LIMIT	= 5;
+    TRY_LATER		        = 6;
+    ERR_OCCURED			= 7; 
+    EXCEED_MSG_CAPACITY		= 8;
+  }
+  
+   enum OpType {
+    SMS		= 1;
+    MMS		= 2;
+     }
+  enum MMS_Endflag  {
+    BEGIN	= 0;  
+    RESUME	= 1;  
+    END		= 2;     
+  }
+  enum NetType
+  {
+	cmcc=1;
+	ctcc=2;
+	cucc=3;
+  }
+message LoginRequest {
+required string corpname = 1;
+required int32 stamp	 = 2; 
+required string authstr = 3; 
+}
+
+message LoginResponse {
+required ErrorCode retcode = 1;
+optional int32 identify = 2 ;
+}
+
+message LogoutRequest {
+required int32 identify =1;
+}
+
+message LogoutResponse {
+required  ErrorCode retcode = 1;
+}
+
+message SmsCreateRequest {
+
+required bytes content	   = 1;				
+required int32 identify   = 2;
+required bool   islongmsg  = 3 [default = false];	
+}
+
+message SmsCreateResponse {
+required ErrorCode retcode = 1;
+optional string contentid  = 2;
+}
+
+message SmsSendRequest {
+required uint32  identify	= 1;			
+required string  usernumber	= 2;
+required uint64  contentid	= 4;		
+optional int32   splits		= 5[default = 1];	
+required string	 serivce	= 6;
+required int32	 mo_flag	= 7;			
+required int32	 fee_type	= 8;			
+required int32	 fee_vlaue	= 9;			
+optional int32	 agent_flag	= 10;			
+optional int32	 give_fee	= 11;
+optional int32	 report_flag	= 12;
+optional int32   priority	= 13;	
+optional string  chargemobile	= 14;
+optional string  link_id	= 15;
+optional string	 scheduletime	= 16;			
+optional string	 expiretime	= 17;
+} 
+
+message SmsSendResponse {
+required ErrorCode retcode	= 1;
+optional string trackid		= 2;
+}
+
+
+message MmsCreateRequest {
+required uint32 identify   	= 1;	
+required bytes  subject		= 2;	
+required string productID	= 3;	
+}
+
+message MmsCreateResponse {
+required ErrorCode retcode	= 1;
+optional string messageid	= 2;
+}
+
+message MmsAppendRequest {
+required uint32 identify	= 1 ;
+required bytes  attache		= 2 ; 
+optional string attfname	= 3 ; 
+required string messageid	= 4 ; 
+}
+
+message MmsAppendResponse {
+required ErrorCode retcode	= 1;
+optional string attacheid	= 2 ;   
+}
+
+message MmsApdAttcheRequest {
+required uint32 identify	= 1 ;
+required bytes	bincontent	= 2 ; 
+required string attacheid	= 3 ;
+required string messageid	= 4 ;
+}
+
+message MmsApdAttcheResponse {
+required ErrorCode retcode	= 1;
+}
+
+message MmsDeleteRequest {
+required uint32 identify	= 1 ; 
+required string messageid	= 2 ;  
+optional string attacheID	= 3 ; 
+}
+
+message MmsDeleteResponse {
+required ErrorCode retcode	= 1;
+}
+
+
+message MmsSendRequest {
+required uint32 identify		= 1;
+required string messageid		= 2;
+required string ChargedPartyID		= 3; 
+required string recipent		= 4;
+optional string linkid			= 5; 
+optional int32	Priority		= 6;   
+optional bool	ReadReply		= 7 ;	
+optional bool	ReplyCharging		= 8 ;  
+optional bool	DeliveryReport		= 9 ;	
+}
+
+message MmsSendResponse {
+required  ErrorCode retcode	 = 1;
+optional  string trackid	 = 2 ;
+}
+
+
+message TrackingRequest {
+required uint32 identify = 1;	
+required string trackid  = 2;
+}
+
+message TrackingResponse {
+required ErrorCode retcode = 1;
+optional int32 error	   = 2 ;
+optional int32 state	   = 3  ;
+}
+
+
+message ClcacheRequest {
+required uint32 cropid   = 1;	
+}
+
+message ClcacheResponse {
+required ErrorCode retcode = 1;
+}
+

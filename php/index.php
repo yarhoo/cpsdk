@@ -15,7 +15,7 @@ require_once 'rpc/pb_proto_cpmsg.php';
 require_once 'rpc/CpMsgRpc.php';
 
 
-$c = new CpMsgRpc();
+$c = new CpMsgRpc(’123.125.219.115‘，10123);
 
 $time = number_format(microtime(true),32,'','');
 $time = time();

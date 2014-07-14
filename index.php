@@ -67,8 +67,9 @@ if(!$r['state'])
     $c->MmsDelete($token, $msgId, $r['attId']);
 
 
-//发送短信							param2 收件人     param3 扣费方	  linkid		 ，      ，
+//发送短信							param2 收件人     param3 扣费方式	  linkid		 ，  优先级    ，阅读报告，计费报告
 // 返回trackid 作为该彩信的跟踪序号
+//$identify, $msgId, $recption, $chargepartid, $linkid, $priority, $readreply, $replycharing
 $r = $c->MmsSend($token, $msgId, "8613212345678", "8613012345678", "000000000000", 1, true, true);
 var_dump($r);
 

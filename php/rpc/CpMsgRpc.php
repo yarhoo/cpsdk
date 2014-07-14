@@ -26,15 +26,14 @@
 
 class CpMsgRpc
 {
-    protected $strSocktesAddress = '123.125.219.115';
-    protected $strSocketsPort = '10123';
+    protected $strSocktesAddress ;
+    protected $strSocketsPort ;
     private $setplen = 7168;
-    // public function __construct()
-    // {
-    //     $this->strSocktesAddress = $arrSysConfig['INTERFACE']['HOST'];
-    //     $this->strSocketsPort = $arrSysConfig['INTERFACE']['PORT'];
-    // }
-    
+    public function __construct($ip,$port)
+     {
+         $strSocktesAddress=$ip;
+         $strSocketsPort=$port;
+    }
    
     
     /**
